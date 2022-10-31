@@ -1,0 +1,36 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'java'
+}
+
+group = 'zerobase'
+version = '0.0.1-SNAPSHOT' //해당 프로젝트의 버전(weather application project)
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral() //dependency를 다운 받아온 저장소
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web' //모든 시점에 사용
+	compileOnly 'org.projectlombok:lombok' //컴파일 시점에만 사용
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' //test시점에만 사용
+	implementation 'mysql:mysql-connector-java'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
